@@ -1,4 +1,4 @@
-package data
+package dataset
 
 //Pager limit offset pager interface
 type Pager interface {

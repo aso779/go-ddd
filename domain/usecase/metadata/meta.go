@@ -11,7 +11,7 @@ type Meta interface {
 	//PresenterToPersistence returns persistence name by given presenter name
 	PresenterToPersistence(presenterName string) string
 	//PresenterSetToPersistenceSet returns presenter fields name set by given persistence name set
-	PresenterSetToPersistenceSet(jsonFields []string) []string
+	PresenterSetToPersistenceSet(presenterNames []string) []string
 	//PresenterPersistenceMapping returns mapping presenter names to persistence names
 	PresenterPersistenceMapping() map[string]string
 	//Relations returns possible relations

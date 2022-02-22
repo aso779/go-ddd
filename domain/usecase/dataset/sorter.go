@@ -1,6 +1,6 @@
-package data
+package dataset
 
-import "github.com/aso779/go-ddd-domain/domain/usecases/metadata"
+import "github.com/aso779/go-ddd/domain/usecase/metadata"
 
 //Sorter sorter interface
 type Sorter interface {
