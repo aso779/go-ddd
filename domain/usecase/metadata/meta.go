@@ -18,12 +18,14 @@ type Meta interface {
 	Relations() map[string]Relation
 }
 
+type PrimaryKey map[string]any
+
 //Entity general entity interface
 type Entity interface {
 	//Name entity name
 	Name() string
 	//PrimaryKey entity primary key
-	PrimaryKey() map[string]interface{}
+	PrimaryKey() PrimaryKey
 }
 
 //EntityMetaDecorator entity decorator. Describe entity relations meta data
