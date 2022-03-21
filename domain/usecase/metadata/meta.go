@@ -46,8 +46,10 @@ type Relation interface {
 	Table() string
 }
 
+type MetaParser func(decorator EntityMetaDecorator) Meta
+
 //EntityMetaContainer describe entity meta container
 type EntityMetaContainer interface {
-	Add(entity EntityMetaDecorator)
+	Add(entity EntityMetaDecorator, parser MetaParser)
 	Get(entName string) Meta
 }

@@ -12,12 +12,10 @@ func NewContainer() *Container {
 	}
 }
 
-type metaParser func(decorator metadata.EntityMetaDecorator) metadata.Meta
-
-func (r *Container) AddEntityDecorator(decorator metadata.EntityMetaDecorator, parser metaParser) {
+func (r *Container) Add(decorator metadata.EntityMetaDecorator, parser metadata.MetaParser) {
 	r.cache[decorator.Entity().Name()] = parser(decorator)
 }
 
-func (r *Container) GetCache(entName string) metadata.Meta {
+func (r *Container) Get(entName string) metadata.Meta {
 	return r.cache[entName]
 }
