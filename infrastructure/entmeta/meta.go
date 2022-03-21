@@ -3,13 +3,29 @@ package entmeta
 import "github.com/aso779/go-ddd/domain/usecase/metadata"
 
 type Meta struct {
-	src                    metadata.EntityMetaDecorator
+	decorator              metadata.EntityMetaDecorator
 	entityName             string
 	persistenceName        string
+	relations              map[string]metadata.Relation
 	fieldToPresenter       map[string]string
 	presenterToPersistence map[string]string
 	persistenceToPresenter map[string]string
-	relations              map[string]metadata.Relation
+}
+
+func (r *Meta) SetDecorator(decorator metadata.EntityMetaDecorator) {
+	r.decorator = decorator
+}
+
+func (r *Meta) SetEntityName(name string) {
+	r.entityName = name
+}
+
+func (r *Meta) SetPersistenceName(name string) {
+	r.persistenceName = name
+}
+
+func (r *Meta) SetRelations(relations map[string]metadata.Relation) {
+	r.relations = relations
 }
 
 func (r *Meta) AddFieldToPresenter(fieldName string, presenterName string) {
