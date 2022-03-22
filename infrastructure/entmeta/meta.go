@@ -12,6 +12,15 @@ type Meta struct {
 	persistenceToPresenter map[string]string
 }
 
+func NewMeta() *Meta {
+	return &Meta{
+		relations:              make(map[string]metadata.Relation),
+		fieldToPresenter:       make(map[string]string),
+		presenterToPersistence: make(map[string]string),
+		persistenceToPresenter: make(map[string]string),
+	}
+}
+
 func (r *Meta) SetDecorator(decorator metadata.EntityMetaDecorator) {
 	r.decorator = decorator
 }
