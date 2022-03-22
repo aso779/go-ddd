@@ -9,21 +9,21 @@ import (
 type CrudRepository[E metadata.Entity, T any] interface {
 	FindOne(
 		ctx context.Context,
-		tx TransactionManager[T],
+		tx any,
 		fields []string,
 		spec dataset.Specifier,
 	) (*E, error)
 
 	FindOneById(
 		ctx context.Context,
-		tx TransactionManager[T],
+		tx any,
 		fields []string,
 		id metadata.PrimaryKey,
 	) (*E, error)
 
 	FindAll(
 		ctx context.Context,
-		tx TransactionManager[T],
+		tx any,
 		fields []string,
 		spec dataset.Specifier,
 		page dataset.Pager,
@@ -32,27 +32,27 @@ type CrudRepository[E metadata.Entity, T any] interface {
 
 	FindAllByIds(
 		ctx context.Context,
-		tx TransactionManager[T],
+		tx any,
 		fields []string,
 		ids []metadata.PrimaryKey,
 	) (*[]E, error)
 
 	Count(
 		ctx context.Context,
-		tx TransactionManager[T],
+		tx any,
 		spec dataset.Specifier,
 	) (int, error)
 
 	Create(
 		ctx context.Context,
-		tx TransactionManager[T],
+		tx any,
 		ent *E,
 		fields []string,
 	) (*E, error)
 
 	Update(
 		ctx context.Context,
-		tx TransactionManager[T],
+		tx any,
 		ent *E,
 		fields []string,
 		ftu []string,
@@ -60,7 +60,7 @@ type CrudRepository[E metadata.Entity, T any] interface {
 
 	Delete(
 		ctx context.Context,
-		tx TransactionManager[T],
+		tx any,
 		spec dataset.Specifier,
 	) (int, error)
 }
