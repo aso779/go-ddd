@@ -74,7 +74,7 @@ func (r *Meta) PresenterSetToPersistenceSet(presenterNames []string) []string {
 }
 
 func (r *Meta) PresenterPersistenceMapping() map[string]string {
-	return r.persistenceToPresenter
+	return r.presenterToPersistence
 }
 
 func (r *Meta) Relations() map[string]metadata.Relation {
