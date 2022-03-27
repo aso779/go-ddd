@@ -14,14 +14,21 @@ type CrudRepository[E metadata.Entity, T any] interface {
 		spec dataset.Specifier,
 	) (*E, error)
 
-	FindOneById(
+	FindOneByPk(
 		ctx context.Context,
 		tx any,
 		fields []string,
-		id metadata.PrimaryKey,
+		pk metadata.PrimaryKey,
 	) (*E, error)
 
 	FindAll(
+		ctx context.Context,
+		tx any,
+		fields []string,
+		spec dataset.Specifier,
+	) (*[]E, error)
+
+	FindPage(
 		ctx context.Context,
 		tx any,
 		fields []string,
@@ -30,11 +37,11 @@ type CrudRepository[E metadata.Entity, T any] interface {
 		sort dataset.Sorter,
 	) (*[]E, error)
 
-	FindAllByIds(
+	FindAllByPks(
 		ctx context.Context,
 		tx any,
 		fields []string,
-		ids []metadata.PrimaryKey,
+		pks []metadata.PrimaryKey,
 	) (*[]E, error)
 
 	Count(
@@ -43,14 +50,14 @@ type CrudRepository[E metadata.Entity, T any] interface {
 		spec dataset.Specifier,
 	) (int, error)
 
-	Create(
+	CreateOne(
 		ctx context.Context,
 		tx any,
 		ent *E,
 		fields []string,
 	) (*E, error)
 
-	Update(
+	UpdateOne(
 		ctx context.Context,
 		tx any,
 		ent *E,
