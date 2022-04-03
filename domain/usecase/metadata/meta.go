@@ -22,8 +22,8 @@ type PrimaryKey map[string]any
 
 //Entity general entity interface
 type Entity interface {
-	//Name entity name
-	Name() string
+	//EntityName entity name
+	EntityName() string
 	//PrimaryKey entity primary key
 	PrimaryKey() PrimaryKey
 }

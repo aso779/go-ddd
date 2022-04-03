@@ -13,7 +13,7 @@ func NewContainer() *Container {
 }
 
 func (r *Container) Add(decorator metadata.EntityMetaDecorator, parser metadata.MetaParser) {
-	r.cache[decorator.Entity().Name()] = parser(decorator)
+	r.cache[decorator.Entity().EntityName()] = parser(decorator)
 }
 
 func (r *Container) Get(entName string) metadata.Meta {
