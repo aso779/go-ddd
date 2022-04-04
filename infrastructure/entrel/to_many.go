@@ -41,7 +41,7 @@ func (r ToMany) Join() []string {
 	return result
 }
 
-func (r ToMany) Prefix() string {
+func (r ToMany) Table() string {
 	return r.JoinTable
 }
 

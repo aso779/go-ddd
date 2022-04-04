@@ -41,7 +41,7 @@ type Relations interface {
 
 //Relation describe infrastructure entity relations
 type Relation interface {
-	Meta() Meta
+	GetMeta() Meta
 	Join() []string
 	Table() string
 }

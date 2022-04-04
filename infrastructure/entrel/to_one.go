@@ -26,7 +26,7 @@ func (r ToOne) Join() []string {
 	return []string{sb.String()}
 }
 
-func (r ToOne) Prefix() string {
+func (r ToOne) Table() string {
 	return r.JoinTable
 }
 
