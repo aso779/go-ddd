@@ -81,7 +81,7 @@ func (r *Field) ColumnName(meta metadata.Meta) string {
 		return fmt.Sprintf("%s.%s", table, meta.PresenterToPersistence(r.fieldName))
 	}
 	if rel, ok := meta.Relations()[r.RelKey()]; ok {
-		return fmt.Sprintf(`"%s"."%s"`, rel.Table(), rel.Meta().PresenterToPersistence(r.fieldName))
+		return fmt.Sprintf(`"%s"."%s"`, rel.Table(), rel.GetMeta().PresenterToPersistence(r.fieldName))
 	}
 
 	//TODO error
