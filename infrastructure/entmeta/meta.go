@@ -77,6 +77,10 @@ func (r *Meta) PresenterPersistenceMapping() map[string]string {
 	return r.presenterToPersistence
 }
 
+func (r *Meta) PersistencePresenterMapping() map[string]string {
+	return r.persistenceToPresenter
+}
+
 func (r *Meta) Relations() map[string]metadata.Relation {
 	return r.relations
 }

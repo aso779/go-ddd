@@ -14,6 +14,8 @@ type Meta interface {
 	PresenterSetToPersistenceSet(presenterNames []string) []string
 	//PresenterPersistenceMapping returns mapping presenter names to persistence names
 	PresenterPersistenceMapping() map[string]string
+	//PersistencePresenterMapping returns mapping persistence names to presenter names
+	PersistencePresenterMapping() map[string]string
 	//Relations returns possible relations
 	Relations() map[string]Relation
 }
