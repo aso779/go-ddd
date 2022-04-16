@@ -62,7 +62,6 @@ type CrudRepository[E metadata.Entity, T any] interface {
 		tx any,
 		ent *E,
 		fields []string,
-		ftu []string,
 	) (*E, error)
 
 	Delete(
