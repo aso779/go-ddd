@@ -8,10 +8,10 @@ import (
 
 type GteSpecification struct {
 	field Field
-	value interface{}
+	value any
 }
 
-func NewGte(field string, value interface{}) dataset.Specifier {
+func NewGte(field string, value any) dataset.Specifier {
 	return &GteSpecification{
 		field: NewField(field),
 		value: value,
@@ -26,8 +26,8 @@ func (r *GteSpecification) Query(meta metadata.Meta) string {
 	return fmt.Sprintf("%s >= ?", r.field.ColumnName(meta))
 }
 
-func (r *GteSpecification) Values() []interface{} {
-	return []interface{}{r.value}
+func (r *GteSpecification) Values() []any {
+	return []any{r.value}
 }
 
 func (r *GteSpecification) IsEmpty() bool {

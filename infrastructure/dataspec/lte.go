@@ -8,10 +8,10 @@ import (
 
 type LteSpecification struct {
 	field Field
-	value interface{}
+	value any
 }
 
-func NewLte(field string, value interface{}) dataset.Specifier {
+func NewLte(field string, value any) dataset.Specifier {
 	return &LteSpecification{
 		field: NewField(field),
 		value: value,
@@ -26,8 +26,8 @@ func (r *LteSpecification) Query(meta metadata.Meta) string {
 	return fmt.Sprintf("%s <= ?", r.field.ColumnName(meta))
 }
 
-func (r *LteSpecification) Values() []interface{} {
-	return []interface{}{r.value}
+func (r *LteSpecification) Values() []any {
+	return []any{r.value}
 }
 
 func (r *LteSpecification) IsEmpty() bool {

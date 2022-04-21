@@ -26,8 +26,8 @@ func (r *ILikeSpecification) Query(meta metadata.Meta) string {
 	return fmt.Sprintf("%s ILIKE ?", r.field.ColumnName(meta))
 }
 
-func (r *ILikeSpecification) Values() []interface{} {
-	return []interface{}{r.value}
+func (r *ILikeSpecification) Values() []any {
+	return []any{r.value}
 }
 
 func (r *ILikeSpecification) IsEmpty() bool {

@@ -9,7 +9,7 @@ type Specifier interface {
 	//Query returns query condition string (where part)
 	Query(meta metadata.Meta) string
 	//Values returns query condition values
-	Values() []interface{}
+	Values() []any
 	//IsEmpty is empty flag
 	IsEmpty() bool
 }

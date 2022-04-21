@@ -9,10 +9,10 @@ import (
 
 type CompositeInSpecification struct {
 	fields []Field
-	values interface{}
+	values any
 }
 
-func NewCompositeIn(fields []string, values interface{}) dataset.Specifier {
+func NewCompositeIn(fields []string, values any) dataset.Specifier {
 	var fieldSet []Field
 	for _, v := range fields {
 		fieldSet = append(fieldSet, NewField(v))
@@ -37,8 +37,8 @@ func (r CompositeInSpecification) Query(meta metadata.Meta) string {
 	return fmt.Sprintf("(%s) IN (?)", strings.Join(columnNames, ","))
 }
 
-func (r CompositeInSpecification) Values() []interface{} {
-	return []interface{}{r.values}
+func (r CompositeInSpecification) Values() []any {
+	return []any{r.values}
 }
 
 func (r *CompositeInSpecification) IsEmpty() bool {

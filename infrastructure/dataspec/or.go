@@ -44,8 +44,8 @@ func (r *OrSpecification) Query(meta metadata.Meta) string {
 	return fmt.Sprintf("(%s)", query)
 }
 
-func (r *OrSpecification) Values() []interface{} {
-	var values []interface{}
+func (r *OrSpecification) Values() []any {
+	var values []any
 	for _, specification := range r.specifications {
 		values = append(values, specification.Values()...)
 	}

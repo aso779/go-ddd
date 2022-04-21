@@ -8,10 +8,10 @@ import (
 
 type InSpecification struct {
 	field Field
-	value interface{}
+	value any
 }
 
-func NewIn(field string, value interface{}) dataset.Specifier {
+func NewIn(field string, value any) dataset.Specifier {
 	return &InSpecification{
 		field: NewField(field),
 		value: value,
@@ -26,8 +26,8 @@ func (r InSpecification) Query(meta metadata.Meta) string {
 	return fmt.Sprintf("%s IN (?)", r.field.ColumnName(meta))
 }
 
-func (r InSpecification) Values() []interface{} {
-	return []interface{}{r.value}
+func (r InSpecification) Values() []any {
+	return []any{r.value}
 }
 
 func (r *InSpecification) IsEmpty() bool {
