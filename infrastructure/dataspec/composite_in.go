@@ -12,7 +12,7 @@ type CompositeInSpecification struct {
 	values []interface{}
 }
 
-func CompositeNewIn(fields []string, values []interface{}) dataset.Specifier {
+func NewCompositeIn(fields []string, values []interface{}) dataset.Specifier {
 	var fieldSet []Field
 	for _, v := range fields {
 		fieldSet = append(fieldSet, NewField(v))
