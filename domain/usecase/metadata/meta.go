@@ -40,6 +40,14 @@ func (r PrimaryKey) Values() []any {
 	return values
 }
 
+func (r PrimaryKey) IsComposite() bool {
+	return len(r) > 1
+}
+
+func (r PrimaryKey) IsEmpty() bool {
+	return len(r) == 0
+}
+
 //Entity general entity interface
 type Entity interface {
 	//EntityName entity name
