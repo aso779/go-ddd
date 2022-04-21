@@ -9,10 +9,10 @@ import (
 
 type CompositeInSpecification struct {
 	fields []Field
-	values []interface{}
+	values interface{}
 }
 
-func NewCompositeIn(fields []string, values []interface{}) dataset.Specifier {
+func NewCompositeIn(fields []string, values interface{}) dataset.Specifier {
 	var fieldSet []Field
 	for _, v := range fields {
 		fieldSet = append(fieldSet, NewField(v))
@@ -42,5 +42,5 @@ func (r CompositeInSpecification) Values() []interface{} {
 }
 
 func (r *CompositeInSpecification) IsEmpty() bool {
-	return len(r.values) == 0
+	return r.values == nil
 }
