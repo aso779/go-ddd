@@ -20,30 +20,39 @@ type Meta interface {
 	Relations() map[string]Relation
 }
 
+//PrimaryKey struct for primary keys
 type PrimaryKey map[string]any
 
+//Keys primary key keys
 func (r PrimaryKey) Keys() []string {
 	keys := make([]string, len(r))
+	i := 0
 	for k := range r {
-		keys = append(keys, k)
+		keys[i] = k
+		i++
 	}
 
 	return keys
 }
 
+//Values primary key values
 func (r PrimaryKey) Values() []any {
 	values := make([]any, len(r))
+	i := 0
 	for _, v := range r {
-		values = append(values, v)
+		values[i] = v
+		i++
 	}
 
 	return values
 }
 
+//IsComposite primary key composite check
 func (r PrimaryKey) IsComposite() bool {
 	return len(r) > 1
 }
 
+//IsEmpty primary key empty check
 func (r PrimaryKey) IsEmpty() bool {
 	return len(r) == 0
 }
