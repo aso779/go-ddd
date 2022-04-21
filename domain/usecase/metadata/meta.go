@@ -22,6 +22,24 @@ type Meta interface {
 
 type PrimaryKey map[string]any
 
+func (r PrimaryKey) Keys() []string {
+	keys := make([]string, len(r))
+	for k := range r {
+		keys = append(keys, k)
+	}
+
+	return keys
+}
+
+func (r PrimaryKey) Values() []any {
+	values := make([]any, len(r))
+	for _, v := range r {
+		values = append(values, v)
+	}
+
+	return values
+}
+
 //Entity general entity interface
 type Entity interface {
 	//EntityName entity name
