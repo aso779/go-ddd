@@ -8,10 +8,9 @@ import (
 	"github.com/aso779/go-ddd/infrastructure/entmeta"
 )
 
-func TestNotInSpecification_IsEmpty(t *testing.T) {
+func TestNotIsNullSpecification_IsEmpty(t *testing.T) {
 	type fields struct {
 		field Field
-		value any
 	}
 	tests := []struct {
 		name   string
@@ -26,28 +25,14 @@ func TestNotInSpecification_IsEmpty(t *testing.T) {
 					entName:   "TestEntity",
 					fieldName: "TestField",
 				},
-				value: []int{42},
 			},
 			want: false,
-		},
-		{
-			name: "is empty",
-			fields: fields{
-				field: Field{
-					key:       "TestKey",
-					entName:   "TestEntity",
-					fieldName: "TestField",
-				},
-				value: nil,
-			},
-			want: true,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			r := &NotInSpecification{
+			r := &NotIsNullSpecification{
 				field: tt.fields.field,
-				value: tt.fields.value,
 			}
 			if got := r.IsEmpty(); got != tt.want {
 				t.Errorf("IsEmpty() = %v, want %v", got, tt.want)
@@ -56,10 +41,9 @@ func TestNotInSpecification_IsEmpty(t *testing.T) {
 	}
 }
 
-func TestNotInSpecification_Query(t *testing.T) {
+func TestNotIsNullSpecification_Query(t *testing.T) {
 	type fields struct {
 		field Field
-		value any
 	}
 	type args struct {
 		meta metadata.Meta
@@ -78,19 +62,17 @@ func TestNotInSpecification_Query(t *testing.T) {
 					entName:   "RootEntity",
 					fieldName: "id",
 				},
-				value: "TestValue",
 			},
 			args: args{
 				meta: entmeta.NewMeta(),
 			},
-			want: " NOT IN (?)",
+			want: " IS NOT NULL",
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			r := &NotInSpecification{
+			r := &NotIsNullSpecification{
 				field: tt.fields.field,
-				value: tt.fields.value,
 			}
 			if got := r.Query(tt.args.meta); got != tt.want {
 				t.Errorf("Query() = %v, want %v", got, tt.want)
@@ -99,10 +81,9 @@ func TestNotInSpecification_Query(t *testing.T) {
 	}
 }
 
-func TestNotInSpecification_Values(t *testing.T) {
+func TestNotIsNullSpecification_Values(t *testing.T) {
 	type fields struct {
 		field Field
-		value any
 	}
 	tests := []struct {
 		name   string
@@ -117,16 +98,14 @@ func TestNotInSpecification_Values(t *testing.T) {
 					entName:   "RootEntity",
 					fieldName: "id",
 				},
-				value: []int{42, 45},
 			},
-			want: []any{[]int{42, 45}},
+			want: []any{},
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			r := &NotInSpecification{
+			r := &NotIsNullSpecification{
 				field: tt.fields.field,
-				value: tt.fields.value,
 			}
 			if got := r.Values(); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("Values() = %v, want %v", got, tt.want)

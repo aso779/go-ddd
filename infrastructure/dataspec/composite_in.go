@@ -2,9 +2,10 @@ package dataspec
 
 import (
 	"fmt"
+	"strings"
+
 	"github.com/aso779/go-ddd/domain/usecase/dataset"
 	"github.com/aso779/go-ddd/domain/usecase/metadata"
-	"strings"
 )
 
 type CompositeInSpecification struct {
@@ -24,11 +25,11 @@ func NewCompositeIn(fields []string, values any) dataset.Specifier {
 	}
 }
 
-func (r *CompositeInSpecification) Joins(meta metadata.Meta) []string {
+func (r *CompositeInSpecification) Joins(_ metadata.Meta) []string {
 	return []string{}
 }
 
-func (r CompositeInSpecification) Query(meta metadata.Meta) string {
+func (r *CompositeInSpecification) Query(meta metadata.Meta) string {
 	var columnNames []string
 	for _, v := range r.fields {
 		columnNames = append(columnNames, v.ColumnName(meta))
@@ -37,7 +38,7 @@ func (r CompositeInSpecification) Query(meta metadata.Meta) string {
 	return fmt.Sprintf("(%s) IN (?)", strings.Join(columnNames, ","))
 }
 
-func (r CompositeInSpecification) Values() []any {
+func (r *CompositeInSpecification) Values() []any {
 	return []any{r.values}
 }
 

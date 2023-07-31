@@ -2,9 +2,10 @@ package dataspec
 
 import (
 	"fmt"
+	"strings"
+
 	"github.com/aso779/go-ddd/domain/usecase/dataset"
 	"github.com/aso779/go-ddd/domain/usecase/metadata"
-	"strings"
 )
 
 type OrSpecification struct {
@@ -12,7 +13,7 @@ type OrSpecification struct {
 }
 
 func NewOr(specifications ...dataset.Specifier) dataset.CompositeSpecifier {
-	return &AndSpecification{
+	return &OrSpecification{
 		specifications: specifications,
 	}
 }
@@ -56,6 +57,6 @@ func (r *OrSpecification) Append(spec dataset.Specifier) {
 	r.specifications = append(r.specifications, spec)
 }
 
-func (r *OrSpecification) IsNil() bool {
+func (r *OrSpecification) IsEmpty() bool {
 	return len(r.specifications) == 0
 }

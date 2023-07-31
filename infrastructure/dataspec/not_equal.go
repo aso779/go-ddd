@@ -2,6 +2,7 @@ package dataspec
 
 import (
 	"fmt"
+
 	"github.com/aso779/go-ddd/domain/usecase/dataset"
 	"github.com/aso779/go-ddd/domain/usecase/metadata"
 )
@@ -22,11 +23,11 @@ func (r *NotEqualSpecification) Joins(meta metadata.Meta) []string {
 	return join(meta, r.field)
 }
 
-func (r NotEqualSpecification) Query(meta metadata.Meta) string {
+func (r *NotEqualSpecification) Query(meta metadata.Meta) string {
 	return fmt.Sprintf("%s != ?", r.field.ColumnName(meta))
 }
 
-func (r NotEqualSpecification) Values() []any {
+func (r *NotEqualSpecification) Values() []any {
 	return []any{r.value}
 }
 

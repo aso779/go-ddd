@@ -2,6 +2,7 @@ package dataspec
 
 import (
 	"fmt"
+
 	"github.com/aso779/go-ddd/domain/usecase/dataset"
 	"github.com/aso779/go-ddd/domain/usecase/metadata"
 )
@@ -22,14 +23,15 @@ func (r *InSpecification) Joins(meta metadata.Meta) []string {
 	return join(meta, r.field)
 }
 
-func (r InSpecification) Query(meta metadata.Meta) string {
+func (r *InSpecification) Query(meta metadata.Meta) string {
 	return fmt.Sprintf("%s IN (?)", r.field.ColumnName(meta))
 }
 
-func (r InSpecification) Values() []any {
+func (r *InSpecification) Values() []any {
 	return []any{r.value}
 }
 
 func (r *InSpecification) IsEmpty() bool {
+	//TODO empty slice check
 	return r.value == nil
 }
