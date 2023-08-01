@@ -19,7 +19,7 @@ func NewNotIn(field string, value any) dataset.Specifier {
 	}
 }
 
-func (r *NotInSpecification) Joins(meta metadata.Meta) []string {
+func (r *NotInSpecification) Joins(meta metadata.Meta) []metadata.Join {
 	return join(meta, r.field)
 }
 

@@ -69,7 +69,7 @@ func TestEqualSpecification_Joins(t *testing.T) {
 		name   string
 		fields fields
 		args   args
-		want   []string
+		want   []metadata.Join
 	}{
 		{
 			name: "join",
@@ -114,7 +114,12 @@ func TestEqualSpecification_Joins(t *testing.T) {
 					return meta
 				}(),
 			},
-			want: []string{"JOIN related_table ON rel_id=related_table.id"},
+			want: []metadata.Join{
+				{
+					JoinString: "JOIN related_table ON rel_id=related_table.id",
+					Args:       nil,
+				},
+			},
 		},
 	}
 	for _, tt := range tests {

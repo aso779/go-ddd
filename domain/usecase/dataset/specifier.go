@@ -2,10 +2,10 @@ package dataset
 
 import "github.com/aso779/go-ddd/domain/usecase/metadata"
 
-//Specifier specification interface
+// Specifier specification interface
 type Specifier interface {
 	//Joins returns required joins slice
-	Joins(meta metadata.Meta) []string
+	Joins(meta metadata.Meta) []metadata.Join
 	//Query returns query condition string (where part)
 	Query(meta metadata.Meta) string
 	//Values returns query condition values

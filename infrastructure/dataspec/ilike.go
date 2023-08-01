@@ -2,6 +2,7 @@ package dataspec
 
 import (
 	"fmt"
+
 	"github.com/aso779/go-ddd/domain/usecase/dataset"
 	"github.com/aso779/go-ddd/domain/usecase/metadata"
 )
@@ -18,7 +19,7 @@ func NewILike(field string, value string) dataset.Specifier {
 	}
 }
 
-func (r *ILikeSpecification) Joins(meta metadata.Meta) []string {
+func (r *ILikeSpecification) Joins(meta metadata.Meta) []metadata.Join {
 	return join(meta, r.field)
 }
 

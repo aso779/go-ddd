@@ -2,9 +2,10 @@ package dataspec
 
 import (
 	"fmt"
+	"strings"
+
 	"github.com/aso779/go-ddd/domain/usecase/dataset"
 	"github.com/aso779/go-ddd/domain/usecase/metadata"
-	"strings"
 )
 
 type AndSpecification struct {
@@ -21,15 +22,15 @@ func (r *AndSpecification) Append(spec dataset.Specifier) {
 	r.specifications = append(r.specifications, spec)
 }
 
-func (r *AndSpecification) Joins(meta metadata.Meta) []string {
+func (r *AndSpecification) Joins(meta metadata.Meta) []metadata.Join {
 	uniqueIdx := make(map[string]struct{})
-	var joins []string
+	var joins []metadata.Join
 
 	for _, specification := range r.specifications {
 		for _, j := range specification.Joins(meta) {
-			if _, ok := uniqueIdx[j]; !ok {
+			if _, ok := uniqueIdx[j.JoinString]; !ok {
 				joins = append(joins, j)
-				uniqueIdx[j] = struct{}{}
+				uniqueIdx[j.JoinString] = struct{}{}
 			}
 		}
 	}

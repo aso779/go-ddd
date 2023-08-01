@@ -19,7 +19,7 @@ func NewNotILike(field string, value string) dataset.Specifier {
 	}
 }
 
-func (r *NotILikeSpecification) Joins(meta metadata.Meta) []string {
+func (r *NotILikeSpecification) Joins(meta metadata.Meta) []metadata.Join {
 	return join(meta, r.field)
 }
 

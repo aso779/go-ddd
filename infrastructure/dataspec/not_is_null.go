@@ -17,7 +17,7 @@ func NewNotIsNull(field string) dataset.Specifier {
 	}
 }
 
-func (r *NotIsNullSpecification) Joins(meta metadata.Meta) []string {
+func (r *NotIsNullSpecification) Joins(meta metadata.Meta) []metadata.Join {
 	return join(meta, r.field)
 }
 

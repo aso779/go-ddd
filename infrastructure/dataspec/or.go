@@ -18,15 +18,15 @@ func NewOr(specifications ...dataset.Specifier) dataset.CompositeSpecifier {
 	}
 }
 
-func (r *OrSpecification) Joins(meta metadata.Meta) []string {
+func (r *OrSpecification) Joins(meta metadata.Meta) []metadata.Join {
 	uniqueIdx := make(map[string]struct{})
-	var joins []string
+	var joins []metadata.Join
 
 	for _, specification := range r.specifications {
 		for _, j := range specification.Joins(meta) {
-			if _, ok := uniqueIdx[j]; !ok {
+			if _, ok := uniqueIdx[j.JoinString]; !ok {
 				joins = append(joins, j)
-				uniqueIdx[j] = struct{}{}
+				uniqueIdx[j.JoinString] = struct{}{}
 			}
 		}
 	}
