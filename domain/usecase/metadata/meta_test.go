@@ -53,3 +53,17 @@ func TestPrimaryKey_NotIsEmpty(t *testing.T) {
 		t.Error("PK empty")
 	}
 }
+
+func TestNewJoin_IsEmpty(t *testing.T) {
+	join := NewJoin("INNER JOIN b ON a.id = b.id")
+	if join.Args != nil {
+		t.Error("Args not empty")
+	}
+}
+
+func TestNewJoin_NotIsEmpty(t *testing.T) {
+	join := NewJoin("INNER JOIN b ON a.id = b.id AND a.qwe = ? AND b.ewq = ?", "first_value", "second_value")
+	if len(join.Args) != 2 {
+		t.Error("Invalid args number")
+	}
+}

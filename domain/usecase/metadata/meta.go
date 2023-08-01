@@ -95,3 +95,10 @@ type Join struct {
 	JoinString string
 	Args       []any
 }
+
+func NewJoin(query string, args ...any) Join {
+	return Join{
+		JoinString: query,
+		Args:       args,
+	}
+}
