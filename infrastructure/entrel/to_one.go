@@ -1,8 +1,9 @@
 package entrel
 
 import (
-	"github.com/aso779/go-ddd/domain/usecase/metadata"
 	"strings"
+
+	"github.com/aso779/go-ddd/domain/usecase/metadata"
 )
 
 type ToOne struct {
@@ -11,7 +12,7 @@ type ToOne struct {
 	JoinColumns []JoinColumn
 }
 
-func (r ToOne) Join() []string {
+func (r ToOne) Join() []metadata.Join {
 	sb := strings.Builder{}
 	for _, v := range r.JoinColumns {
 		sb.WriteString("JOIN ")
@@ -23,7 +24,12 @@ func (r ToOne) Join() []string {
 		sb.WriteString(".")
 		sb.WriteString(v.ReferencedName)
 	}
-	return []string{sb.String()}
+	return []metadata.Join{
+		{
+			JoinString: sb.String(),
+			Args:       nil,
+		},
+	}
 }
 
 func (r ToOne) Table() string {

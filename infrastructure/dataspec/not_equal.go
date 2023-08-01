@@ -19,7 +19,7 @@ func NewNotEqual(field string, value any) dataset.Specifier {
 	}
 }
 
-func (r *NotEqualSpecification) Joins(meta metadata.Meta) []string {
+func (r *NotEqualSpecification) Joins(meta metadata.Meta) []metadata.Join {
 	return join(meta, r.field)
 }
 

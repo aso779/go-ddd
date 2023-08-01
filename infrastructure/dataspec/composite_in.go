@@ -25,8 +25,8 @@ func NewCompositeIn(fields []string, values any) dataset.Specifier {
 	}
 }
 
-func (r *CompositeInSpecification) Joins(_ metadata.Meta) []string {
-	return []string{}
+func (r *CompositeInSpecification) Joins(_ metadata.Meta) []metadata.Join {
+	return []metadata.Join{}
 }
 
 func (r *CompositeInSpecification) Query(meta metadata.Meta) string {

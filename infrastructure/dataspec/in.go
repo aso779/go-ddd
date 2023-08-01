@@ -19,7 +19,7 @@ func NewIn(field string, value any) dataset.Specifier {
 	}
 }
 
-func (r *InSpecification) Joins(meta metadata.Meta) []string {
+func (r *InSpecification) Joins(meta metadata.Meta) []metadata.Join {
 	return join(meta, r.field)
 }
 

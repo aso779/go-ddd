@@ -1,6 +1,6 @@
 package metadata
 
-//Meta entity meta information
+// Meta entity meta information
 type Meta interface {
 	//EntityName returns entity name
 	EntityName() string
@@ -20,10 +20,10 @@ type Meta interface {
 	Relations() map[string]Relation
 }
 
-//PrimaryKey struct for primary keys
+// PrimaryKey struct for primary keys
 type PrimaryKey map[string]any
 
-//Keys primary key keys
+// Keys primary key keys
 func (r PrimaryKey) Keys() []string {
 	keys := make([]string, len(r))
 	i := 0
@@ -35,7 +35,7 @@ func (r PrimaryKey) Keys() []string {
 	return keys
 }
 
-//Values primary key values
+// Values primary key values
 func (r PrimaryKey) Values() []any {
 	values := make([]any, len(r))
 	i := 0
@@ -47,17 +47,17 @@ func (r PrimaryKey) Values() []any {
 	return values
 }
 
-//IsComposite primary key composite check
+// IsComposite primary key composite check
 func (r PrimaryKey) IsComposite() bool {
 	return len(r) > 1
 }
 
-//IsEmpty primary key empty check
+// IsEmpty primary key empty check
 func (r PrimaryKey) IsEmpty() bool {
 	return len(r) == 0
 }
 
-//Entity general entity interface
+// Entity general entity interface
 type Entity interface {
 	//EntityName entity name
 	EntityName() string
@@ -65,28 +65,33 @@ type Entity interface {
 	PrimaryKey() PrimaryKey
 }
 
-//EntityMetaDecorator entity decorator. Describe entity relations meta data
+// EntityMetaDecorator entity decorator. Describe entity relations meta data
 type EntityMetaDecorator interface {
 	Entity() Entity
 	Relations
 }
 
-//Relations general relations interface
+// Relations general relations interface
 type Relations interface {
 	Relations() map[string]Relation
 }
 
-//Relation describe infrastructure entity relations
+// Relation describe infrastructure entity relations
 type Relation interface {
 	GetMeta() Meta
-	Join() []string
+	Join() []Join
 	Table() string
 }
 
 type MetaParser func(decorator EntityMetaDecorator) Meta
 
-//EntityMetaContainer describe entity meta container
+// EntityMetaContainer describe entity meta container
 type EntityMetaContainer interface {
 	Add(entity EntityMetaDecorator, parser MetaParser)
 	Get(entName string) Meta
+}
+
+type Join struct {
+	JoinString string
+	Args       []any
 }
