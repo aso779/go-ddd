@@ -1,8 +1,9 @@
 package entrel
 
 import (
-	"github.com/aso779/go-ddd/domain/usecase/metadata"
 	"strings"
+
+	"github.com/aso779/go-ddd/domain/usecase/metadata"
 )
 
 type ToMany struct {
@@ -13,8 +14,8 @@ type ToMany struct {
 	InverseJoinColumns []JoinColumn
 }
 
-func (r ToMany) Join() []string {
-	var result []string
+func (r ToMany) Join() []metadata.Join {
+	var result []metadata.Join
 
 	sb := strings.Builder{}
 	sb.WriteString("JOIN ")
@@ -25,7 +26,10 @@ func (r ToMany) Join() []string {
 		sb.WriteString("=")
 		sb.WriteString(v.ReferencedName)
 	}
-	result = append(result, sb.String())
+	result = append(result, metadata.Join{
+		JoinString: sb.String(),
+		Args:       nil,
+	})
 
 	sb = strings.Builder{}
 	sb.WriteString("JOIN ")
@@ -36,7 +40,10 @@ func (r ToMany) Join() []string {
 		sb.WriteString("=")
 		sb.WriteString(v.ReferencedName)
 	}
-	result = append(result, sb.String())
+	result = append(result, metadata.Join{
+		JoinString: sb.String(),
+		Args:       nil,
+	})
 
 	return result
 }
