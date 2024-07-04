@@ -30,7 +30,7 @@ func (r PrimaryKey) Sorted() []PrimaryKey {
 		keys []string
 		res  = make([]PrimaryKey, len(r))
 	)
-	for k, _ := range r {
+	for k := range r {
 		keys = append(keys, k)
 	}
 	sort.Strings(keys)
