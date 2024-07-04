@@ -6,7 +6,6 @@ import (
 
 	"github.com/aso779/go-ddd/domain/usecase/metadata"
 	"github.com/aso779/go-ddd/infrastructure/entmeta"
-	"github.com/aso779/go-ddd/infrastructure/entrel"
 )
 
 func TestEqualSpecification_IsEmpty(t *testing.T) {
@@ -98,16 +97,6 @@ func TestEqualSpecification_Joins(t *testing.T) {
 					relationMeta.SetPersistenceName("related_entity")
 
 					relations := map[string]metadata.Relation{}
-					relations["RelatedEntity"] = entrel.ToOne{
-						Meta:      relationMeta,
-						JoinTable: "related_table",
-						JoinColumns: []entrel.JoinColumn{
-							{
-								Name:           "rel_id",
-								ReferencedName: "id",
-							},
-						},
-					}
 
 					meta.SetRelations(relations)
 
