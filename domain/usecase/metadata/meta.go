@@ -1,5 +1,7 @@
 package metadata
 
+import "sort"
+
 // Meta entity meta information
 type Meta interface {
 	//EntityName returns entity name
@@ -23,6 +25,22 @@ type Meta interface {
 // PrimaryKey struct for primary keys
 type PrimaryKey map[string]any
 
+func (r PrimaryKey) Sorted() []PrimaryKey {
+	var (
+		keys []string
+		res  = make([]PrimaryKey, len(r))
+	)
+	for k, _ := range r {
+		keys = append(keys, k)
+	}
+	sort.Strings(keys)
+	for k, v := range keys {
+		res[k] = PrimaryKey{v: r[v]}
+	}
+
+	return res
+}
+
 // Keys primary key keys
 func (r PrimaryKey) Keys() []string {
 	keys := make([]string, len(r))
@@ -33,6 +51,13 @@ func (r PrimaryKey) Keys() []string {
 	}
 
 	return keys
+}
+
+func (r PrimaryKey) SortedKeys() []string {
+	k := r.Keys()
+	sort.Strings(k)
+
+	return k
 }
 
 // Values primary key values
